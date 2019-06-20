@@ -455,9 +455,11 @@ class Util implements Countable
                 )->getAllOfType(Response::TYPE_DATA) as $response) {
                     $newId = $response->getProperty('.id');
                     $idList .= strtolower(
-                        is_string($newId)
-                        ? $newId
-                        : stream_get_contents($newId) . ','
+                        (
+                            is_string($newId)
+                            ? $newId
+                            : stream_get_contents($newId)
+                        ) . ','
                     );
                 }
             } elseif (is_callable($criteria)) {
